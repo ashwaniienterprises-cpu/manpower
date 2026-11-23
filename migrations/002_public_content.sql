@@ -1,0 +1,1 @@
+CREATE TABLE applications (id BIGSERIAL PRIMARY KEY, applicant_name TEXT NOT NULL, phone TEXT NOT NULL, email TEXT NOT NULL DEFAULT '', city TEXT NOT NULL DEFAULT '', application_type TEXT NOT NULL, experience TEXT NOT NULL DEFAULT '', message TEXT NOT NULL DEFAULT '', status TEXT NOT NULL DEFAULT 'NEW', created_at TIMESTAMPTZ NOT NULL DEFAULT now());

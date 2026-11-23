@@ -1,0 +1,1 @@
+CREATE TABLE public_files (id BIGSERIAL PRIMARY KEY, title TEXT NOT NULL, category TEXT NOT NULL DEFAULT 'GENERAL', original_name TEXT NOT NULL, storage_key TEXT NOT NULL, content_type TEXT NOT NULL, bytes BIGINT NOT NULL, published BOOLEAN NOT NULL DEFAULT true, created_at TIMESTAMPTZ NOT NULL DEFAULT now());

@@ -1,0 +1,4 @@
+import { db, admin } from 'hatchable';
+export const access = 'admin';
+export const methods = ['GET','POST'];
+export default async function(req,res){if(!(await admin.check(req)))return res.status(401).json({error:'ADMIN ONLY'});if(req.method==='GET'){const rows=(await db.query('SELECT id,applicant_name,phone,email,city,application_type,experience,message,status,created_at FROM applications ORDER BY created_at DESC LIMIT 500')).rows;return res.json({applications:rows});}const id=Number(req.body?.id),status=String(req.body?.status||'');if(!Number.isSafeInteger(id)||!['NEW','REVIEWING','CONTACTED','CLOSED'].includes(status))return res.status(400).json({error:'INVALID APPLICATION UPDATE.'});await db.query('UPDATE applications SET status=$1 WHERE id=$2',[status,id]);res.json({ok:true});}
